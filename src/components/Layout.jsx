@@ -1,11 +1,11 @@
-import Navbar from "@/components/Navbar.jsx";
+import NavBar from "@/components/NavBar.jsx";
 import Subreddits from "@/app/subreddits/page";
 import SideBar from "@/app/sidebar/page";
 
 export default function Layout({ children }) {
   return (
     <div>
-      <Navbar />
+      <NavBar />
       <div className="content-container">
         <div className="rightfeed-section">
           <Subreddits />

@@ -15,7 +15,7 @@ import redditFace from "@/../public/redditFace.svg";
 import Image from "next/image";
 import bgimg from "@/../public/bgimg.webp";
 import JoinSub from "@/components/JoinSub.jsx";
-import Feed from "@/components/feed";
+import Feed from "@/components/Feed.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleUser,
