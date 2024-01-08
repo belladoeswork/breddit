@@ -7,28 +7,6 @@ import PostComments from "@/components/PostComments.jsx";
 import Layout from "@/components/Layout.jsx";
 import { fetchUser } from "@/lib/fetchUser.js";
 
-// import { useState, useRef, useEffect } from 'react';
-// import { useRouter } from "next/navigation.js";
-
-import Link from "next/link";
-import redditFace from "@/../public/redditFace.svg";
-import Image from "next/image";
-import bgimg from "@/../public/bgimg.webp";
-import JoinSub from "@/components/JoinSub.jsx";
-import Feed from "@/components/Feed.jsx";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleUser,
-  faArrorRightFromBracket,
-  faSquarePen,
-  faTrashCan,
-  faArrowUpFromBracket,
-  faUpLong,
-  faDownLong,
-  faEllipsis,
-  faMessage,
-} from "@fortawesome/free-regular-svg-icons";
-import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 async function countComments(postId) {
   let count = 0;
@@ -117,9 +95,6 @@ export default async function postView({ params, votes }) {
             subreddit={post.subreddit}
           />
         </div>
-        {/* {post.children.map((comment) => (
-                    <PostComments key={comment.id} comments={comment.comments} user={user} subredditId={subredditId} votes={votes} />
-                ))} */}
 
         <div className="comments">
           <CreateComment post={post} user={user} subredditId={subredditId} />
@@ -137,40 +112,4 @@ export default async function postView({ params, votes }) {
       </div>
     </Layout>
   );
-}
-
-// comments
-// const comments = await prisma.post.findMany({
-//   where: {
-//     parentId: postId,
-//   },
-//   include: {
-//     children: true,
-//   },
-// });
-
-// // count comments
-// let commentsCount = comments.length;
-
-// // include replies to comments in count?
-// for (let reply of comments) {
-//     const replies = await prisma.post.findMany({
-//         where: {
-//             parentId: reply.id,
-//         },
-//     });
-//     commentsCount += replies.length;
-// }
-
-{
-  /* 
-
-return (
-                        <div key={comment.id}>
-                            <div>
-                                <p>{comment.text}</p>
-                            </div>
-                        </div>
-                    );
-                })} */
 }

@@ -47,7 +47,6 @@ export default function CreatePost({ subreddit, post, postId }) {
       body: JSON.stringify({ subredditId: selectedSub, title, message }),
     });
 
-    console.log({ subredditId: selectedSub, title, message });
 
     const info = await response.json();
 
@@ -55,7 +54,6 @@ export default function CreatePost({ subreddit, post, postId }) {
       return setError(info.error);
     }
 
-    console.log(info);
 
     setSelectedSub("");
     setTitle("");

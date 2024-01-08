@@ -1,12 +1,13 @@
-import { prisma } from "@/lib/prisma.js";
+// import { prisma } from "@/lib/prisma.js";
+// import { NextResponse } from "next/server.js";
 
-export default async function handler(request, response) {
-  const { subredditId, userId } = request.body;
+// export async function POST(request, response) {
+//   const { subredditId, userId } = request.body;
 
-  await prisma.subreddit.update({
-    where: { id: subredditId },
-    data: { subscribers: { connect: { id: userId } } },
-  });
+//   await prisma.subreddit.update({
+//     where: { id: subredditId },
+//     data: { subscribers: { connect: { id: userId } } },
+//   });
 
-  res.status(200).json({ message: "Subscribed successfully" });
-}
+//   return NextResponse.json({ success: true, message: "Subscribed successfully" });
+// }

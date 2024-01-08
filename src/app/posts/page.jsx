@@ -43,17 +43,3 @@ export default async function Posts() {
     </div>
   );
 }
-
-{
-  /* <div>
-                {comments.map((comment) => {
-                    return (
-                        <div key={comment.id}>
-                            <div>
-                                <p>{comment.text}</p>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div> */
-}

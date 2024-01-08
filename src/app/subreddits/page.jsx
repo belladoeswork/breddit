@@ -14,7 +14,8 @@ export default async function Subreddits() {
     },
   });
 
-  const user = await fetchUser();
+    const user = await fetchUser();
+    
 
   subreddits.sort((a, b) => b.subscribers.length - a.subscribers.length);
 
@@ -50,13 +51,19 @@ export default async function Subreddits() {
             <Link
               href={`/subreddits/${subreddit.id}`}
               style={{ textDecoration: "none" }}
-            >
-                    {/* <JoinSub className="join-bttn" subredditId={subreddit.id} /> */}
+                >
+                   
                     <JoinSub className="join-bttn" subredditId={subreddit.id} />
             </Link>
           </div>
         ))}
       </div>
+          <div className="view-container">
+          <button className="view">View All</button>
+              
+      </div>
     </div>
   );
 }
+
+
