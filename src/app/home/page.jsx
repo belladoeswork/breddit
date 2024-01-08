@@ -5,7 +5,7 @@ import SideBar from "@/app/sidebar/page";
 
 import Feed from "@/components/Feed.jsx";
 
-export default function Home() {
+export default function Home2() {
   return (
     <div>
       <Navbar />
