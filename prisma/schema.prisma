@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id                String         @id @default(uuid())
+  username          String         @unique
+  password          String
+  votes              Vote[]
+  posts              Post[]
+  comments          Comment[]
+  subreddits Subreddit[]
+  subscription      Subscription[]
+}
+
+model Vote {
+  id       String  @id @default(uuid())
+  userId   String
+  postId   String
+  isUpvote Boolean
+  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post     Post    @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, postId])
+}
+
+model Post {
+  id          String    @id @default(uuid())
+  title       String
+  message     String
+  userId      String
+  subredditId String
+  parentId    String?
+  votes       Vote[]
+  createAt    DateTime  @default(now())
+  children    Post[]    @relation("Post")
+  parent      Post?     @relation("Post", fields: [parentId], references: [id], onDelete: Cascade)
+  subreddit   Subreddit @relation(fields: [subredditId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comments    Comment[]
+}
+
+model Subreddit {
+  id          String         @id @default(uuid())
+  name        String         @unique
+  createdAt   DateTime       @default(now())
+  userId   String
+  user     User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  posts       Post[]
+  subscribers Subscription[]
+
+  @@index([name])
+}
+
+model Subscription {
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+  subreddit   Subreddit @relation(fields: [subredditId], references: [id])
+  subredditId String
+
+  @@id([userId, subredditId])
+}
+
+model Comment {
+  id       String   @id @default(uuid())
+  postId   String
+  userId   String
+  text     String
+  post     Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id])
+  createAt DateTime @default(now())
+}
